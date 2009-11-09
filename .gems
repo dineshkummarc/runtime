@@ -1,1 +1,3 @@
+mislav-will_paginate --source gems.github.com 
 hobo -v '0.8.3'
+calendar_date_select 
