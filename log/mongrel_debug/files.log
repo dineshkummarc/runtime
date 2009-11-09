@@ -1,0 +1,11 @@
+# Logfile created on Sun May 03 16:24:44 +0100 2009 by /
+D, [2009-05-03T16:24:44.292774 #499] DEBUG -- : TRACING ON Sun May 03 16:24:44 +0100 2009
+FILES OPEN AT EXIT
+--- 
+/Users/adam/work/rails/runtime/log/development.log: 1
+log/mongrel_debug/objects.log: 2
+log/mongrel_debug/rails.log: 1
+log/mongrel_debug/files.log: 1
+log/mongrel_debug/threads.log: 1
+log/mongrel_debug/access.log: 1
+

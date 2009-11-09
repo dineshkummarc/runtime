@@ -1,0 +1,658 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Artist">Artists</nav-item>
+    <nav-item with="&Post">Posts</nav-item>
+    <nav-item with="&Release">Releases</nav-item>
+    <nav-item with="&Track">Tracks</nav-item>
+  </navigation>
+</def>
+
+
+
+  
+<!-- ====== ArtistTrack Pages ====== -->
+
+
+<def tag="index-page" for="ArtistTrack">
+  <page merge title="Artist Tracks">
+    <body: class="index-page artist-track" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Artist Tracks</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+        <div param="new-form">
+          <h3 param="new-form-heading">New Artist Track</h3>
+          <form with="&new_for_current_user ArtistTrack" param/>
+        </div>
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ArtistTrack">
+  <page merge title="New Artist Track">
+    <body: class="new-page artist-track" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New Artist Track</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create Artist Track"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ArtistTrack">
+  <page merge title="Artist Track">
+
+    <body: class="show-page artist-track" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:track param="parent-link">&laquo; <name/></a:track>
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="" param/>
+          </header>
+    
+          <section param="content-body">
+            <field-list fields="artist" param/>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ArtistTrack">
+  <page merge title="Edit Artist Track">
+
+    <body: class="edit-page artist-track" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This Artist Track" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+
+  
+<!-- ====== Artist Pages ====== -->
+
+
+<def tag="index-page" for="Artist">
+  <page merge title="Artists">
+    <body: class="index-page artist" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Artists</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <a action="new" to="&model" param="new-link"/>      
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Artist">
+  <page merge title="New Artist">
+    <body: class="new-page artist" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New Artist</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create Artist"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Artist">
+  <page merge title="Artist">
+
+    <body: class="show-page artist" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Artist</a>
+          </header>
+    
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="image_file_name, image_content_type, image_file_size, website" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">Artist Tracks</h3>
+              
+              <collection:artist_tracks param/>
+            </section>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Artist">
+  <page merge title="Edit Artist">
+
+    <body: class="edit-page artist" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This Artist" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+
+  
+<!-- ====== Post Pages ====== -->
+
+
+<def tag="index-page" for="Post">
+  <page merge title="Posts">
+    <body: class="index-page post" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Posts</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <a action="new" to="&model" param="new-link"/>      
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Post">
+  <page merge title="New Post">
+    <body: class="new-page post" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New Post</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create Post"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Post">
+  <page merge title="Post">
+
+    <body: class="show-page post" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Post</a>
+          </header>
+    
+          <section param="content-body">
+            <view:body param="description"/>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Post">
+  <page merge title="Edit Post">
+
+    <body: class="edit-page post" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This Post" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+
+  
+<!-- ====== Release Pages ====== -->
+
+
+<def tag="index-page" for="Release">
+  <page merge title="Releases">
+    <body: class="index-page release" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Releases</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <a action="new" to="&model" param="new-link"/>      
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Release">
+  <page merge title="New Release">
+    <body: class="new-page release" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New Release</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create Release"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Release">
+  <page merge title="Release">
+
+    <body: class="show-page release" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Release</a>
+          </header>
+    
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="title, release_date, image_file_name, image_content_type, image_file_size" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">Release Tracks</h3>
+              
+              <collection:release_tracks param/>
+            </section>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Release">
+  <page merge title="Edit Release">
+
+    <body: class="edit-page release" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This Release" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+
+  
+<!-- ====== Track Pages ====== -->
+
+
+<def tag="index-page" for="Track">
+  <page merge title="Tracks">
+    <body: class="index-page track" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Tracks</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <a action="new" to="&model" param="new-link"/>      
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Track">
+  <page merge title="New Track">
+    <body: class="new-page track" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New Track</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create Track"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Track">
+  <page merge title="Track">
+
+    <body: class="show-page track" param/>
+
+    <content: param>
+      <section-group>
+        <section param="main-content">
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Track</a>
+          </header>
+    
+          <section param="content-body" with-flash-messages>
+            <field-list fields="length, release" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">Artist Tracks</h3>
+              
+              <collection:artist_tracks param/>
+            </section>
+          </section>
+        </section>
+        
+        <aside param>
+          <section param="release_tracks-collection-section">
+            <h3 param="release_tracks-collection">Release Tracks</h3>
+            <collection:release_tracks/>
+          </section>
+        </aside>
+      </section-group>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Track">
+  <page merge title="Edit Track">
+
+    <body: class="edit-page track" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This Track" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+
+  
+<!-- ====== User Pages ====== -->
+
+
+<def tag="index-page" for="User">
+  <page merge title="Users">
+    <body: class="index-page user" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Users</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="New User">
+    <body: class="new-page user" param/>
+    
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">New User</h2>
+      </section>
+      
+      <section param="content-body">
+        <form param>
+          <submit: label="Create User"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="User">
+
+    <body: class="show-page user" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <record-flags fields="administrator" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit User</a>
+          </header>
+    
+          <section param="content-body">
+            <field-list fields="email_address" param/>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="Edit User">
+
+    <body: class="edit-page user" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">Edit <type-name/></h2>
+        <delete-button label="Remove This User" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+
+  <page title="Signup" merge>
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Signup</h2>
+      </header>
+
+      <section param="content-body">
+        <signup-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="Reset Password" merge>
+    
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+    
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">Reset Password</h2>
+      </header>
+      
+      <section param="content-body">
+        <reset-password-form param="form"/>
+      </section>
+    </content:>
+    
+  </page>
+</def>
+
+

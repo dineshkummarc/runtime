@@ -1,0 +1,95 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="form" for="ArtistTrack">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="artist, track" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Artist">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, image_file_name, image_content_type, image_file_size, description, website" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Post">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title, body" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Release">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title, cat_no, release_date, image_file_name, image_content_type, image_file_size, description, release_tracks, tracks" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Track">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title, length, artist_tracks, artists, release, release_tracks, releases" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="User">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, administrator" param/>
+    <div param="actions">
+      <submit label="Save" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="signup-form" polymorphic/>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup">
+    <error-messages param/>
+    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="Signup" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="reset-password-form" polymorphic/>
+<def tag="reset-password-form" for="User">
+  <form lifecycle="reset_password">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="Reset Password" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+

@@ -1,0 +1,259 @@
+<include src="rapid" plugin="hobo"/>
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+<def tag="app-name">Runtime Records</def>
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs>
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Artist">Artists</nav-item>
+    <nav-item with="&Post">News</nav-item>
+    <nav-item with="&Release">Releases</nav-item>
+  </navigation>
+</def>
+
+
+<def tag="input" for="date" attrs="name">
+  <%= calendar_date_select_tag param_name_for_this(name), this, :time => false, :format => :euro_24hr %> 
+</def>
+
+<def tag="input" for="datetime" attrs="name">
+  <%= calendar_date_select_tag param_name_for_this(name), this, :time => true, :format => :euro_24hr %> 
+</def>
+
+<def tag="form" for="Track">
+  <form merge>
+    <error-messages/>
+    <field-list fields="title, length, artists, release"/>
+
+		
+    <div class="actions">
+      <submit label="Save"/><or-cancel/>
+    </div>
+  </form>
+</def>
+
+<def tag="card" for="ArtistTrack" attrs="display">
+  <card class="artist-track" param="default" merge>
+    <header: param>
+      <h4 param="heading">
+      	<if test="&display=='track'">
+      		<a:track/>
+      	</if>
+				<else>
+					<a:artist/>
+				</else>
+      </h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
+  </card>
+</def>
+
+<def tag="index-page" for="ArtistTrack">
+  <page merge title="Artist Tracks">
+    <body: class="index-page artist-track" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">Tracks</h2>
+
+        <p param="count" if>There <count prefix="are"/></p>
+      </header>
+      
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+      
+        <collection param/>
+      
+        <page-nav param="bottom-page-nav"/>
+      </section>
+    </content:>
+  </page>
+</def>
+
+<def tag="show-page" for="Release">
+  <page merge title="Release">
+
+    <body: class="show-page release" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <field-names-where-true fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Release</a>
+          </header>
+    
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="title, release_date, image_file_name, image_content_type, image_file_size" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">Tracks Featured</h3>
+              
+              <collection:release_tracks param/>
+            </section>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+<def tag="card" for="Artist">
+  <card class="artist" merge>
+    <header: >
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: >
+      <count:artist_tracks label="Track"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Release">
+  <card class="release" merge>
+    <header: >
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: >
+      <count:release_tracks label="Track"/>
+    </body:>
+  </card>
+</def>
+
+
+
+<def tag="show-page" for="Track">
+  <page merge title="Track">
+
+    <body: class="show-page track" />
+
+    <content: param>
+      <section-group param="content-body">
+        <section param="main-content">
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <field-names-where-true fields="" />
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Track</a>
+          </header>
+    
+          <section param="content-body" with-flash-messages>
+            <field-list fields="length, release" />
+            <section param="collection-section">
+              <h3 param="collection-heading">Artists</h3>
+              
+              <collection:artist_tracks />
+            </section>
+          </section>
+        </section>
+        
+        <aside param>
+          <preview-with-more:release_tracks.recent label="Releases" param="preview-release_tracks">
+            <more:>more</more:>
+          </preview-with-more>
+        </aside>
+      </section-group>
+    </content:>
+    
+  </page>
+</def>
+
+<def tag="show-page" for="Artist">
+  <page merge title="Artist">
+
+    <body: class="show-page artist" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading"><name/></h2>
+
+            <field-names-where-true fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">Edit Artist</a>
+          </header>
+    
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="image_file_name, image_content_type, image_file_size, website" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">Tracks</h3>
+              
+              <collection:artist_tracks>
+              	<card display="track"/>
+              </collection>
+            </section>
+          </section>
+    </content:>
+    
+  </page>
+</def>
+
+
+
+<def tag="card" for="ReleaseTrack">
+  <card class="release-track" param="default" merge>
+    <header: param>
+      <h4 param="heading"><view:track/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="form" for="Release">
+  <form merge >
+    <error-messages />
+    <field-list fields="title, cat_no, release_date, image_file_name, image_content_type, image_file_size, description, tracks" />
+    <div class="actions">
+      <submit label="Save" /><or-cancel/>
+    </div>
+  </form>
+</def>
+
+<extend tag="page">
+	
+    <old-page doctype="XHTML 1.0 TRANSITIONAL" merge>
+
+    <head: param>
+
+		
+			<javascript name="prototype"/>
+			<javascript name="scriptaculous"/>
+			<javascript name="effects"/>
+			<javascript name="controls"/>
+
+			
+			<javascript name="lowpro"/>
+			<javascript name="hobo-rapid"/> 
+			
+			<javascript name="application"/>
+      <!--      
+			<javascript name="scroller"/>
+			<javascript name="slider"/>  
+      -->  
+							
+			<%= calendar_date_select_includes "silver" %>
+			
+			<script src="/javascripts/calendar_date_select/calendar_date_select.js" type="text/javascript"></script>
+			<script src="/javascripts/calendar_date_select/format_euro_24hr.js" type="text/javascript"></script>
+			
+			<stylesheet name="/hobothemes/clean/stylesheets/clean.css"/>
+			<stylesheet name="/hobothemes/clean/stylesheets/rapid-ui.css"/>
+			
+			<stylesheet name="application"/>
+	</head>
+	<!--header: replace></header>   
+	<content: replace>
+    </content-->
+    </old-page>
+
+  
+</extend>

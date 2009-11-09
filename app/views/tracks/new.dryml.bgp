@@ -1,0 +1,103 @@
+<new-page>
+
+
+  <content:>
+  
+	<!-- Main content -->
+	<div id="main_content">
+		<div id="main_heading">
+			<div id="heading_inner" class="clearfix">
+					<h2>New Project</h2>
+			</div>
+        <if test="&current_user.project_id">
+          <p id="sub_header">Need help? Check out our <%=link_to_redbox('quick help guide', 'popup_project_edit', {:complete => 'inline_box', :loading => visual_effect(:highlight, 'inline_box')}) %></p>
+		
+            <!-- POPUP (Add Image) HTML -->
+            <div class="lightbox_popup" id="popup_project_edit" style="display:none;">
+              <div id="popup_heading">
+                <div id="popup_inner">
+                  <h2>Edit Project</h2>                  
+                </div>
+
+                <p id="popup_sub_header">Overview</p>                
+              </div>
+              <div id="popup_content">
+                <form action="#" method="get" accept-charset="utf-8">
+            
+                <label></label>
+
+                  <p>This screen allows administrators to edit details associated with the project.   </p>
+
+                  <br/><br/>
+                  
+                        <p class="clearfix submit_action">
+                        <span><a href="" onclick="RedBox.close();">Close</a></span>
+                        </p>
+                </form>
+              </div>
+            
+            </div>   
+            <!-- END -->
+        </if>
+        <else>
+          <p id="sub_header">Fill in the details below, selecting YOURSELF as the user.</p>
+        </else>
+    </div>
+		
+		<error-messages/>
+    <% if current_account.reached_project_limit? %>
+      <div id="main_inner">
+        <h2>Limit reached</h2>
+        <ul class="activity_list">
+        <li>You have reached the maximum number of projects you can have with your account level.  You can either <a href="/projects">delete</a> some of your projects or <a href="/change_plan">upgrade your account</a> to be able to create a project.</li>
+        </ul>
+          <p class="clearfix submit_action">
+          <span><a href="/users">Back</a></span>
+          </p>
+      </div>
+    <% else %>
+		<form id="generic_form" class="clearfix"  onsubmit="return validate_project();">
+		
+			<div class="clearfix" id="new_req_id">
+				<label for="">Name<span class="asterisk">*</span></label>
+					<p><input:name/></p>
+					<span class="info"><view:help_name if="&this.respond_to?('help_name')"/></span>
+			</div>
+
+			<div id="new_req_id" class="clearfix">
+			  <label for="">Description<span class="asterisk">*</span></label>
+			  <p><input:description/></p>
+			  <span class="info"><view:help_description if="&this.respond_to?('help_description')"/></span>         
+			</div>
+			<div class="clearfix">
+				<label for="">Active</label>
+					<p><input:status/></p>
+					<span class="info"><view:help_active if="&this.respond_to?('help_active')"/></span>
+			</div>
+			<div class="clearfix">
+				<label for="">Users<span class="asterisk">*</span></label>
+          <div class="user_project_help"><view:help_users if="&this.respond_to?('help_users')"/><span class="add_a_project_message" id="add_a_user_message" style="display:none"><br/>Please add a user to this project.</span></div>
+          <select-many:users options="&User.not_in_project(current_user, this)" class="audittext"/>
+			</div>
+
+
+			<input type="hidden" name="project[organisation_id]" id="project[organisation_id]" value="&current_user.organisation_id"/>
+		
+		<div class="clearfix">
+		<label for="">&nbsp</label>
+			<div id="related_entity">
+			<label for="">&nbsp;</label>
+				<p class="clearfix submit_action">
+					<input type="image" src="../images/buttons/submit.gif" id="add_submit" value="Submit" /> 
+					<do> or <a href="/projects">Cancel</a></do>
+				</p>
+				
+			</div>
+		</div>
+		</form>
+    <% end %>
+		</div>	<!-- end main content -->
+  
+  </content:>
+</new-page>
+

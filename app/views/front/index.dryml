@@ -1,0 +1,16 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>Welcome to <app-name/></h1>
+			
+    </header>
+
+    <section class="content-body">
+
+    </section>
+  </content:>
+  
+</page>

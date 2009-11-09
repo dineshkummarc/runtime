@@ -1,0 +1,78 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="card" for="Artist">
+  <card class="artist" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <count:artist_tracks param/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="ArtistRelease">
+  <card class="artist-release" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="ArtistTrack">
+  <card class="artist-track" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Post">
+  <card class="post" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Release">
+  <card class="release" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <count:release_tracks param/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="ReleaseTrack">
+  <card class="release-track" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Track">
+  <card class="track" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <count:artist_tracks param/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
