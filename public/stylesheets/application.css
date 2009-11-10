@@ -1,16 +1,18 @@
 html, body {
-background:#111111 none repeat scroll 0 0;
+/* background:#111111 none repeat scroll 0 0; */
+background: url(/images/waterfall_sunrays_edit1_invert.jpg) no-repeat;
+background-attachment: fixed;
 color:#222222;
 }
 
 .page-header {
- background:#1c1c1c none repeat scroll 0 0;
- color:white;
+  /*background: none; /*#1c1c1c none repeat scroll 0 0; */
+  color:white;
 
 }
 
 .page-header h1.app-name {
-	background: url(/images/runtime_logo_600.png) no-repeat;
+	background: url(/images/runtime_logo_600_transparent.png) no-repeat;
 	height: 100px;
 	text-indent: -9000px;
 }

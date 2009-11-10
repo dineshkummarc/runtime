@@ -9,8 +9,8 @@
 .add-to-collection {background: #f5f5f5;}
 */
 /* Cubicle Blue */
-html, body {color: #193440; background: #193440;}
-.page-header {color: white; background: #3F606E;}
+html, body {color: #193440; background: none;}
+.page-header {color: white; }
 .page-header .navigation.main-nav a {background: #5B8BA0;}
 .page-header .navigation.main-nav li.current a {background: #FCFFF4; color: #222;}
 .page-header .navigation.main-nav a:hover {background: #193440;}

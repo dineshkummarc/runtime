@@ -75,14 +75,14 @@
 
     <content: param>
           <header param="content-header">
-            <a:track param="parent-link">&laquo; <name/></a:track>
+            <a:artist param="parent-link">&laquo; <name/></a:artist>
             <h2 param="heading"><name/></h2>
 
             <record-flags fields="" param/>
           </header>
     
           <section param="content-body">
-            <field-list fields="artist" param/>
+            <field-list fields="track" param/>
           </section>
     </content:>
     

@@ -1,6 +1,7 @@
 class Artist < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
+  require 'paperclip'
 
   fields do
     name               :string
@@ -14,6 +15,12 @@ class Artist < ActiveRecord::Base
 
   has_many :tracks, :through => :artist_tracks  
   has_many :artist_tracks, :dependent => :destroy
+  
+  has_attached_file :image,
+    :styles => {
+      :thumb=> "100x100#",
+      :small  => "150x150>" }
+  
 
   #has_many :releases, :through => :artist_releases  
   #has_many :artist_releases, :dependent => :destroy

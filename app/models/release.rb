@@ -1,6 +1,7 @@
 class Release < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
+  require 'paperclip'
 
   fields do
     title              :string
@@ -15,6 +16,11 @@ class Release < ActiveRecord::Base
   
   has_many :tracks, :through => :release_tracks, :accessible => true 
   has_many :release_tracks, :dependent => :destroy, :accessible => true 
+
+  has_attached_file :image,
+    :styles => {
+      :thumb=> "100x100#",
+      :small  => "150x150>" }
 
   #has_many :artists, :through => :artist_releases  
   #has_many :artist_releases, :dependent => :destroy

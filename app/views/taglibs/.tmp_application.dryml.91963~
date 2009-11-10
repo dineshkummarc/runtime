@@ -86,17 +86,16 @@
 
     <content: param>
           <header param="content-header">
-          	<%=image_tag this.image.url %>
             <h2 param="heading"><name/></h2>
 
-            <record-flags fields="" param/>
+            <field-names-where-true fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">Edit Release</a>
           </header>
     
           <section param="content-body">
             <view:description param="description"/>
-            <field-list fields="title, release_date" param/>
+            <field-list fields="title, release_date, image_file_name, image_content_type, image_file_size" param/>
             <section param="collection-section">
               <h3 param="collection-heading">Tracks Featured</h3>
               
@@ -122,7 +121,7 @@
 <def tag="card" for="Release">
   <card class="release" merge>
     <header: >
-      <h4 param="heading"><%=image_tag this.image.url %><a><name/></a></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: >
       <count:release_tracks label="Track"/>
@@ -143,7 +142,7 @@
           <header param="content-header">
             <h2 param="heading"><name/></h2>
 
-            <record-flags fields="" />
+            <field-names-where-true fields="" />
 
             <a action="edit" if="&can_edit?" param="edit-link">Edit Track</a>
           </header>
@@ -178,7 +177,7 @@
           <header param="content-header">
             <h2 param="heading"><name/></h2>
 
-            <record-flags fields="" param/>
+            <field-names-where-true fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">Edit Artist</a>
           </header>
@@ -212,8 +211,7 @@
 <def tag="form" for="Release">
   <form merge >
     <error-messages />
-    <field-list fields="title, cat_no, release_date, description, tracks" />
-		<%= file_field :release, :image %>
+    <field-list fields="title, cat_no, release_date, image_file_name, image_content_type, image_file_size, description, tracks" />
     <div class="actions">
       <submit label="Save" /><or-cancel/>
     </div>
@@ -255,7 +253,6 @@
 	<!--header: replace></header>   
 	<content: replace>
     </content-->
-		<account-nav: replace></account-nav:>
     </old-page>
 
   
