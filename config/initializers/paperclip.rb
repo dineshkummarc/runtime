@@ -1,5 +1,7 @@
 
-require 'paperclip'
+#require 'paperclip'
+
+require 'aws/s3'
 
 
 

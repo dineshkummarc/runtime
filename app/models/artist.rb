@@ -16,7 +16,7 @@ class Artist < ActiveRecord::Base
   has_many :tracks, :through => :artist_tracks  
   has_many :artist_tracks, :dependent => :destroy
   
-  has_attached_file :image,
+  has_attached_file :image, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :styles => {
       :thumb=> "100x100#",
       :small  => "150x150>" }

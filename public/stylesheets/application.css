@@ -26,3 +26,13 @@ color:#222222;
 	background-color: #c1c1c1;
 	color: #1c1c1c;
 }
+
+.content {
+
+	padding:1em;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	-opera-border-radius:20px;
+	-khtml-border-radius:20px;
+	border-radius:20px;
+}

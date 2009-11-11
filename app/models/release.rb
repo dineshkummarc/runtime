@@ -17,7 +17,7 @@ class Release < ActiveRecord::Base
   has_many :tracks, :through => :release_tracks, :accessible => true 
   has_many :release_tracks, :dependent => :destroy, :accessible => true 
 
-  has_attached_file :image,
+  has_attached_file :image, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :styles => {
       :thumb=> "100x100#",
       :small  => "150x150>" }
