@@ -1,3 +1,6 @@
 mislav-will_paginate --source gems.github.com 
 hobo -v '0.8.8'
 calendar_date_select 
+aws-s3
+mime-types
+right_aws
