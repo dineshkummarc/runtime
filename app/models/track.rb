@@ -6,6 +6,9 @@ class Track < ActiveRecord::Base
     title      :string
     release_id :integer
     length     :integer #seconds
+    audio_file_name    :string
+    audio_content_type :string
+    audio_file_size    :string    
     timestamps
   end
 
@@ -17,6 +20,7 @@ class Track < ActiveRecord::Base
   has_many :releases, :through => :release_tracks, :accessible => true 
   has_many :release_tracks, :dependent => :destroy, :accessible => true 
   
+  has_attached_file :audio
 
   # --- Permissions --- #
 

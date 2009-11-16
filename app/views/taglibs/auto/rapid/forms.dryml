@@ -51,7 +51,7 @@
 <def tag="form" for="Track">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, length, artist_tracks, artists, release, release_tracks, releases" param/>
+    <field-list fields="title, length, audio_file_name, audio_content_type, audio_file_size, artist_tracks, artists, release, release_tracks, releases" param/>
     <div param="actions">
       <submit label="Save" param/><or-cancel param="cancel"/>
     </div>

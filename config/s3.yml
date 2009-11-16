@@ -1,14 +1,3 @@
-development:
-  bucket_name: runtime-records.com_development
-  access_key_id: AKIAJXO6C643UVGS3POQ
-  secret_access_key: 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
-
-test:
-  bucket_name: runtime-records.com_test
-  access_key_id: AKIAJXO6C643UVGS3POQ
-  secret_access_key: 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
-
-production:
-  bucket_name: runtime-records.com
+#  bucket_name: runtime-records.com
   access_key_id: AKIAJXO6C643UVGS3POQ
   secret_access_key: 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

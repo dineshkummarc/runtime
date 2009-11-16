@@ -42,12 +42,66 @@
   <card class="artist-track" param="default" merge>
     <header: param>
       <h4 param="heading">
-      	<if test="&display=='track'">
-      		<a:track/>
-      	</if>
-				<else>
-					<a:artist/>
-				</else>
+      	<div>
+	      	<div class="left">
+		      	<if test="&display=='track'">
+		      		<a:track/>
+		      	</if>
+						<else>
+							<a:artist/>
+						</else>
+				  </div>
+					<div class="right">
+           <div id='mediaspace_<%=this.track.id %>'><%= this.track.audio.url %></div>
+					</div>
+        </div>     
+            <script type='text/javascript'>
+
+              var so = new SWFObject('/mediaplayer/player-viral.swf','mpl','470','30','9');
+
+              so.addParam('allowfullscreen','true');
+              so.addParam('allowscriptaccess','always');
+              so.addParam('wmode','opaque');
+              //so.addVariable('duration','33');
+              so.addVariable('file', '<%= this.track.audio.url %>' );
+              so.addVariable("skin", "/mediaplayer/snel.swf");
+              so.write('mediaspace_<%=this.track.id %>');
+
+            </script>   				
+				
+      </h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
+  </card>
+</def>
+
+
+<def tag="card" for="ReleaseTrack">
+  <card class="release-track" param="default" merge>
+    <header: param>
+      <h4 param="heading">
+
+          
+      <div>
+        <h4 param="heading" class="left"><a:track/></h4>
+        <div class="right" id='mediaspace_<%=this.id %>'><%= this.audio.url %></div>
+      </div>  
+             
+            <script type='text/javascript'>
+
+              var so = new SWFObject('/mediaplayer/player-viral.swf','mpl','470','30','9');
+
+              so.addParam('allowfullscreen','true');
+              so.addParam('allowscriptaccess','always');
+              so.addParam('wmode','opaque');
+              //so.addVariable('duration','33');
+              so.addVariable('file', '<%= this.track.audio.url %>' );
+              so.addVariable("skin", "/mediaplayer/snel.swf");
+              so.write('mediaspace_<%=this.track.id %>');
+
+            </script>   
       </h4>
       <div param="actions">
         <delete-button label="X" param/>
@@ -100,7 +154,9 @@
             <section param="collection-section">
               <h3 param="collection-heading">Tracks Featured</h3>
               
-              <collection:release_tracks param/>
+              <collection:release_tracks>
+              	<card with="&this.track"/>
+              </collection:release_tracks>
             </section>
           </section>
     </content:>
@@ -111,7 +167,8 @@
 <def tag="card" for="Artist">
   <card class="artist" merge>
     <header: >
-      <h4 param="heading"><a><name/></a></h4>
+    	
+      <h4 param="heading"><%=image_tag this.image.url(:thumb) %><a><name/></a></h4>
     </header:>
     <body: >
       <count:artist_tracks label="Track"/>
@@ -119,10 +176,41 @@
   </card>
 </def>
 
+
+
+
+<def tag="card" for="Track">
+  <card class="artist" merge>
+    <header: >
+    	<div>
+        <h4 param="heading" class="left"><a><name/></a></h4>
+        <div class="right" id='mediaspace_<%=this.id %>'><%= this.audio.url %></div>
+      </div>     
+             
+            <script type='text/javascript'>
+
+              var so = new SWFObject('/mediaplayer/player-viral.swf','mpl','470','32','9');
+
+              so.addParam('allowfullscreen','false');
+              so.addParam('allowscriptaccess','always');
+              so.addParam('wmode','opaque');
+              //so.addVariable('duration','33');
+              so.addVariable('file', '<%= this.audio.url %>' );
+              so.addVariable("skin", "/mediaplayer/stylish_slim.swf");
+              so.write('mediaspace_<%=this.id %>');
+
+            </script>   			
+			
+    </header:>
+
+  </card>
+</def>
+
+ 
 <def tag="card" for="Release">
   <card class="release" merge>
     <header: >
-      <h4 param="heading"><%=image_tag this.image.url %><a><name/></a></h4>
+      <h4 param="heading"><%=image_tag this.image.url(:thumb) %><a><name/></a></h4>
     </header:>
     <body: >
       <count:release_tracks label="Track"/>
@@ -144,7 +232,24 @@
             <h2 param="heading"><name/></h2>
 
             <record-flags fields="" />
+						 
+						<div id='mediaspace'><%= this.audio.url %></div>
+						 
+						<script type='text/javascript'>
 
+						  var so = new SWFObject('/mediaplayer/player-viral.swf','mpl','470','30','9');
+
+						  so.addParam('allowfullscreen','true');
+						  so.addParam('allowscriptaccess','always');
+
+						  so.addParam('wmode','opaque');
+						  //so.addVariable('duration','33');
+						  so.addVariable('file', '<%= this.audio.url %>' );
+							so.addVariable("skin", "/mediaplayer/snel.swf");
+						  so.write('mediaspace');
+
+						</script>
+            
             <a action="edit" if="&can_edit?" param="edit-link">Edit Track</a>
           </header>
     
@@ -176,16 +281,17 @@
 
     <content: param>
           <header param="content-header">
+          	<%=image_tag this.image.url %>
             <h2 param="heading"><name/></h2>
 
-            <record-flags fields="" param/>
+            <record-flags param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">Edit Artist</a>
           </header>
     
           <section param="content-body">
             <view:description param="description"/>
-            <field-list fields="image_file_name, image_content_type, image_file_size, website" param/>
+            <field-list fields="website" param/>
             <section param="collection-section">
               <h3 param="collection-heading">Tracks</h3>
               
@@ -210,10 +316,32 @@
 </def>
 
 <def tag="form" for="Release">
-  <form merge >
+  <form enctype="multipart/form-data" merge >
     <error-messages />
     <field-list fields="title, cat_no, release_date, description, tracks" />
 		<%= file_field :release, :image %>
+    <div class="actions">
+      <submit label="Save" /><or-cancel/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Track">
+  <form enctype="multipart/form-data" merge >
+    <error-messages />
+    <field-list fields="title, length" />
+    <%= file_field :track, :audio %>
+    <div class="actions">
+      <submit label="Save" /><or-cancel/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Artist">
+  <form enctype="multipart/form-data" merge >
+    <error-messages />
+    <field-list fields="name, description, website" />
+    <%= file_field :artist, :image %>
     <div class="actions">
       <submit label="Save" /><or-cancel/>
     </div>
@@ -231,7 +359,7 @@
 			<javascript name="scriptaculous"/>
 			<javascript name="effects"/>
 			<javascript name="controls"/>
-
+      <javascript name="swfobject"/>
 			
 			<javascript name="lowpro"/>
 			<javascript name="hobo-rapid"/> 

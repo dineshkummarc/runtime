@@ -16,10 +16,12 @@ class Artist < ActiveRecord::Base
   has_many :tracks, :through => :artist_tracks  
   has_many :artist_tracks, :dependent => :destroy
   
-  has_attached_file :image, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+  has_attached_file :image, 
+    #:path => ":attachment/:id/:style.:extension",
     :styles => {
-      :thumb=> "100x100#",
-      :small  => "150x150>" }
+      :thumb=> "80x80#",
+      :small  => "150x150>",
+      :medium => "300x300>"}
   
 
   #has_many :releases, :through => :artist_releases  

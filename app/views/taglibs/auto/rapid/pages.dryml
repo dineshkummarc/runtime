@@ -480,7 +480,7 @@
           </header>
     
           <section param="content-body" with-flash-messages>
-            <field-list fields="length, release" param/>
+            <field-list fields="length, audio_file_name, audio_content_type, audio_file_size, release" param/>
             <section param="collection-section">
               <h3 param="collection-heading">Artist Tracks</h3>
               
